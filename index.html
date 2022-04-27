@@ -14,11 +14,14 @@
 <body>
   <div class="container">
     <div class="header">
-      <p id="player-one-display" class="turn" >player 1</p>
       <h1>Tic Tac Toe</h1>
-      <p id="player-two-display">player 2</p>
     </div>
     
+    <div class="player-container">
+      <p id="player-one-display" class="turn" >player 1</p>
+      <p id="player-two-display">player 2</p>
+    </div>
+
     <div id="game-board">
       <div class="square square-1 1"></div>
       <div class="square square-2 2"></div>
@@ -32,7 +35,7 @@
     </div>
   </div>
   
-  <div class="overlay">
+  <div class="overlay-form">
     <form action="#" method="get">
       <div class="form-div">
         <h2>Enter player names</p>
@@ -51,6 +54,11 @@
         <input id="submit" type="submit" value="Submit">
       </div>
     </form>
+  </div>
+
+  <div class="overlay-game-end hidden">
+    <h2 class="game-end-message"></h2>
+    <button type="button" id="game-end-new-game-button">New Game</button>
   </div>
 
   <div class="container">

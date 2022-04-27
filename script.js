@@ -6,7 +6,6 @@ const gameBoard = (() => {
   }
 })();
 
-
 const displayController = ((doc) => {
   let turn = 1;
 
@@ -54,10 +53,7 @@ const displayController = ((doc) => {
 
 })(document);
 
-
-//start the first game
-displayController.renderGameboard()
-
+displayController.renderGameboard(); //start the first game
 
 const player = (name) => {
   const getName = () => name;
@@ -66,7 +62,6 @@ const player = (name) => {
     getName
   }
 }
-
 
 const buttonController = ((doc) => {
   const _resetTurn = () => {
@@ -87,11 +82,16 @@ const buttonController = ((doc) => {
     _resetBoard();
     doc.querySelector("#player-one-display").textContent = playerOne.getName() + " (X)";
     doc.querySelector("#player-two-display").textContent = playerTwo.getName() + " (O)";
-    doc.querySelector(".overlay").classList.add("hidden")
+    doc.querySelector(".overlay-form").classList.add("hidden")
   }
 
   doc.querySelector("#new-game-button").addEventListener("click", () => {
-    doc.querySelector(".overlay").classList.remove("hidden")
+    doc.querySelector(".overlay-form").classList.remove("hidden")
+  })
+
+  doc.querySelector("#game-end-new-game-button").addEventListener("click", () => {
+    doc.querySelector(".overlay-game-end").classList.add("hidden")
+    doc.querySelector(".overlay-form").classList.remove("hidden")
   })
 
   doc.querySelector("#reset-board-button").addEventListener("click", () => {
@@ -104,7 +104,7 @@ const buttonController = ((doc) => {
 })(document);
 
 //logic that checks for 3-in-a-row and a tie
-const gameScenerios = (() => {
+const gameScenerios = ((doc) => {
   const isGameOver = () => {
     let gameEnd = 0;
 
@@ -118,13 +118,11 @@ const gameScenerios = (() => {
       gameBoard.gameBoardArray[4] === gameBoard.gameBoardArray[8]) {
         if (gameBoard.gameBoardArray[0] !== "") {
           gameBoard.gameBoardArray[0] == "X" ? gameEnd = 1: gameEnd = 2;
-          console.log("1")
         }
     } else if (gameBoard.gameBoardArray[2] === gameBoard.gameBoardArray[4] && 
         gameBoard.gameBoardArray[4] === gameBoard.gameBoardArray[6]) {
           if (gameBoard.gameBoardArray[2] !== "") {
             gameBoard.gameBoardArray[2] == "X" ? gameEnd = 1: gameEnd = 2;
-            console.log("2")
           }
     } 
   
@@ -134,7 +132,6 @@ const gameScenerios = (() => {
         gameBoard.gameBoardArray[i + 3] === gameBoard.gameBoardArray[i + 6]) {
           if (gameBoard.gameBoardArray[i] !== "") {
             gameBoard.gameBoardArray[i] == "X" ? gameEnd = 1: gameEnd = 2;
-            console.log("3")
           }
       
       } 
@@ -146,20 +143,22 @@ const gameScenerios = (() => {
         gameBoard.gameBoardArray[i + 1] === gameBoard.gameBoardArray[i + 2]) {
           if (gameBoard.gameBoardArray[i] !== "") {
             gameBoard.gameBoardArray[i] == "X" ? gameEnd = 1: gameEnd = 2;
-            console.log("4")
           }
       }
     }
   
     switch (gameEnd) {
       case 1:
-        console.log("X wins");
+        doc.querySelector(".game-end-message").textContent = `${doc.querySelector("#player-one-display").textContent} wins!`;
+        doc.querySelector(".overlay-game-end").classList.remove("hidden");
         break;
       case 2:
-        console.log("O wins");
+        doc.querySelector(".game-end-message").textContent = `${doc.querySelector("#player-two-display").textContent} wins!`;
+        doc.querySelector(".overlay-game-end").classList.remove("hidden");
         break;
       case 3:
-        console.log("Tie");
+        doc.querySelector(".game-end-message").textContent = `Tie!`;
+        doc.querySelector(".overlay-game-end").classList.remove("hidden");
         break;
       default:
         break;
@@ -168,6 +167,4 @@ const gameScenerios = (() => {
   return {
     isGameOver
   }
-})();
-
-// /Optional - create an AI so that a player can play against the computer
+})(document);

@@ -17,8 +17,17 @@ body {
 
 .header {
   display: flex;
+  flex-direction: column;
   align-items: baseline;
+  justify-content: space-evenly;
+}
+
+.player-container {
+  display: flex;
   justify-content: space-between;
+  gap: 200px;
+  font-size: 18px;
+  margin-bottom: 30px;
 }
 
 h1 {
@@ -72,7 +81,7 @@ button, input[type="submit"] {
   font-size: 20px;
 }
 
-.overlay {
+.overlay-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -82,6 +91,22 @@ button, input[type="submit"] {
   height: 100%;
   width: 100%;
   color: white;
+}
+
+.overlay-game-end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.693);
+  top: 0;
+  height: 100%;
+  width: 100%;
+  color: white;
+}
+
+.game-end-message {
+  margin-top: 100px;
 }
 
 .hidden {
