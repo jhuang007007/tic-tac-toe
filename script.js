@@ -1,22 +1,39 @@
-//gameBoard module
 const gameBoard = (() => {
-  const gameBoardArray = ["x","x","o","o","x","x","o","o","x"];
+  const gameBoardArray = ["","","","","","","","",""];
 
   return {
     gameBoardArray
-  };
+  }
 })();
 
-//displayController module
 const displayController = ((doc) => {
-  //render gameBoardArray to webpage
-  const renderGameboard = (selector) => {
-    doc.querySelector(selector).textContent = gameBoard.gameBoardArray.join(' ');
-  }
+
+  const renderGameboard = () => {
+    let count = 1;
+    let turn = 1;
+
+    gameBoard.gameBoardArray.forEach(element => {
+
+      doc.querySelector(`.square-${count}`).textContent = element;
+      doc.querySelector(`.square-${count}`).addEventListener("click", e => {
+        if (turn % 2 !== 0) {
+          console.log("oof")
+        } else {
+          console.log(e.target)
+        }
+
+        turn++;
+      })
+
+      count++;
+    });
+
+  };
 
   return {
     renderGameboard
   }
+
 })(document);
 
 // player factory
