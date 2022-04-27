@@ -38,6 +38,7 @@ h1 {
   border: solid #4f5e55 1px;
   justify-content: center;
   align-items: center;
+  font-size: 30px;
 }
 
 .square:hover {
@@ -69,4 +70,24 @@ button, input[type="submit"] {
   background-color: #f6fff8;
   padding: 5px 20px;
   font-size: 20px;
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.693);
+  top: 0;
+  height: 100%;
+  width: 100%;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+.turn {
+  color: rgb(0, 255, 13);
 }
