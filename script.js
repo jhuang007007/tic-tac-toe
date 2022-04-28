@@ -53,7 +53,6 @@ const displayController = ((doc) => {
 
 })(document);
 
-displayController.renderGameboard(); //start the first game
 
 const player = (name) => {
   const getName = () => name;
