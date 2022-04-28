@@ -74,7 +74,8 @@ const buttonController = ((doc) => {
     displayController.renderGameboard();
   }
   
-  const _submit = () => {
+  const _submit = (e) => {
+    e.preventDefault();
     _resetTurn();
     const playerOne = player(doc.querySelector("#player-one-name").value);
     const playerTwo = player(doc.querySelector("#player-two-name").value);
